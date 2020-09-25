@@ -1,7 +1,7 @@
 # Personal-Stock-Portfolio
 Simple Personal Stock Portfolio Manager: A web application using Django and iex cloud api
 ------------------------------------------------------------------------------------------
-#Dependencies: 
+# Dependencies: 
 1. Python3
 2. Django(2 or above) <pip install django>
 3. Requests library <pip install requests>
