@@ -1,0 +1,36 @@
+{% extends 'quotes/base.html' %}
+{% block content %}
+<h1>Get your stock quotes here!</h1>
+<br/>
+{% if ticker %}
+
+<h4>{{ticker}}</h4><br/>
+<form action = "{% url 'quotes:home' %}" class="form-inline my-2 my-lg-0" method="POST">
+  {% csrf_token %}
+  <input class="form-control mr-sm-2" type="search" placeholder="Get stock quote" aria-label="Search"
+  name = "ticker">
+  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Stock Quote</button>
+</form>
+{% endif %}
+
+{% if api %}
+    {% if api == "Error ... " %}
+        There was some problem fetching the quotes
+    {% else %}
+        <h1>{{api.companyName}}</h1>
+          <form action = "{% url 'quotes:add_stock' %}" class="form-inline my-2 my-lg-0" method="POST">
+            {% csrf_token %}
+          <input class="form-control mr-sm-2" value="{{api.symbol}}"type="search" placeholder="Add stock to portfolio" aria-label="Search" name = "ticker">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Want to add this stock?</button>
+        </form><br/>
+        Price: ${{api.latestPrice}}<br/>
+        Market Cap: ${{api.marketCap}}<br/>
+        YTD change: ${{api.ytdChange}}<br/>
+        52-week high: ${{api.week52High}}<br/><br/>
+
+        <button type="button" class="btn btn-secondary btn-sm" value="back" onclick="history.back(-1)" >Take me back</button>
+
+    {% endif %}
+{% endif %}
+
+{% endblock %}
