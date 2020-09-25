@@ -10,5 +10,7 @@ Note: App is not currenty hosted. You can run it locally at port 8000
 
 # To run
 $ python manage.py makemigrations
+
 $ python manage.py migrate
+
 $ python manage.py runserver
